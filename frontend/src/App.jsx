@@ -142,7 +142,7 @@ function NotificationCenter({ onOpenTicket, onUnauthorized }) {
     setError('')
 
     try {
-      const response = await fetch('http://localhost:5000/api/notifications', {
+      const response = await fetch('https://supportflow-8mht.onrender.com/api/notifications', {
         headers: { Authorization: ['Bearer', token].join(' ') },
       })
 
@@ -228,7 +228,7 @@ function NotificationCenter({ onOpenTicket, onUnauthorized }) {
       }
 
       const response = await fetch(
-        `http://localhost:5000/api/notifications/${encodeURIComponent(notificationId)}/read`,
+        `https://supportflow-8mht.onrender.com/api/notifications/${encodeURIComponent(notificationId)}/read`,
         {
           method: 'PATCH',
           headers: { Authorization: ['Bearer', token].join(' ') },
@@ -300,7 +300,7 @@ function NotificationCenter({ onOpenTicket, onUnauthorized }) {
         throw new Error('Your session has expired. Please sign in again.')
       }
 
-      const response = await fetch('http://localhost:5000/api/notifications/read-all', {
+      const response = await fetch('https://supportflow-8mht.onrender.com/api/notifications/read-all', {
         method: 'PATCH',
         headers: { Authorization: ['Bearer', token].join(' ') },
       })
@@ -756,7 +756,7 @@ function App() {
     let request = verificationRequest.current
 
     if (!request || request.token !== token) {
-      const promise = fetch('http://localhost:5000/api/auth/me', {
+      const promise = fetch('https://supportflow-8mht.onrender.com/api/auth/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -882,7 +882,7 @@ function App() {
     let request = ticketsRequest.current
 
     if (!request || request.token !== token) {
-      const promise = fetch('http://localhost:5000/api/tickets', {
+      const promise = fetch('https://supportflow-8mht.onrender.com/api/tickets', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -1002,7 +1002,7 @@ function App() {
     let request = filteredCustomerTicketsRequest.current
 
     if (!request || request.token !== token || request.query !== queryString) {
-      const promise = fetch(`http://localhost:5000/api/tickets?${queryString}`, {
+      const promise = fetch(`https://supportflow-8mht.onrender.com/api/tickets?${queryString}`, {
         headers: {
           Authorization: ['Bearer', token].join(' '),
         },
@@ -1146,7 +1146,7 @@ function App() {
     let request = filteredAgentTicketsRequest.current
 
     if (!request || request.token !== token || request.query !== queryString) {
-      const promise = fetch(`http://localhost:5000/api/tickets?${queryString}`, {
+      const promise = fetch(`https://supportflow-8mht.onrender.com/api/tickets?${queryString}`, {
         headers: {
           Authorization: ['Bearer', token].join(' '),
         },
@@ -1264,10 +1264,10 @@ function App() {
 
     if (!request || request.token !== token) {
       const promise = Promise.all([
-        fetch('http://localhost:5000/api/tickets', {
+        fetch('https://supportflow-8mht.onrender.com/api/tickets', {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch('http://localhost:5000/api/auth/users', {
+        fetch('https://supportflow-8mht.onrender.com/api/auth/users', {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]).then(async ([ticketResponse, userResponse]) => {
@@ -1391,7 +1391,7 @@ function App() {
       try {
         const responses = await Promise.all(
           endpoints.map((endpoint) =>
-            fetch(`http://localhost:5000${endpoint}`, {
+            fetch(`https://supportflow-8mht.onrender.com${endpoint}`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
           ),
@@ -1517,7 +1517,7 @@ function App() {
     let request = filteredAdminTicketsRequest.current
 
     if (!request || request.token !== token || request.query !== queryString) {
-      const promise = fetch(`http://localhost:5000/api/tickets?${queryString}`, {
+      const promise = fetch(`https://supportflow-8mht.onrender.com/api/tickets?${queryString}`, {
         headers: {
           Authorization: ['Bearer', token].join(' '),
         },
@@ -1640,7 +1640,7 @@ function App() {
       request.ticketId !== selectedAdminTicketId
     ) {
       const promise = fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAdminTicketId)}`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAdminTicketId)}`,
         { headers: { Authorization: `Bearer ${token}` } },
       ).then(async (response) => {
         if (response.status === 401 || response.status === 403) {
@@ -1753,7 +1753,7 @@ function App() {
       request.ticketId !== selectedAdminTicketId
     ) {
       const promise = fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAdminTicketId)}/comments`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAdminTicketId)}/comments`,
         { headers: { Authorization: `Bearer ${token}` } },
       ).then(async (response) => {
         if (response.status === 401 || response.status === 403) {
@@ -1863,7 +1863,7 @@ function App() {
       request.ticketId !== selectedAgentTicketId
     ) {
       const promise = fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAgentTicketId)}`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAgentTicketId)}`,
         { headers: { Authorization: `Bearer ${token}` } },
       ).then(async (response) => {
         if (response.status === 401 || response.status === 403) {
@@ -1974,7 +1974,7 @@ function App() {
       request.ticketId !== selectedAgentTicketId
     ) {
       const promise = fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAgentTicketId)}/comments`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAgentTicketId)}/comments`,
         { headers: { Authorization: `Bearer ${token}` } },
       ).then(async (response) => {
         if (response.status === 401 || response.status === 403) {
@@ -2082,7 +2082,7 @@ function App() {
       request.ticketId !== selectedCustomerTicketId
     ) {
       const promise = fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedCustomerTicketId)}`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedCustomerTicketId)}`,
         { headers: { Authorization: `Bearer ${token}` } },
       ).then(async (response) => {
         if (response.status === 401 || response.status === 403) {
@@ -2191,7 +2191,7 @@ function App() {
       request.ticketId !== selectedCustomerTicketId
     ) {
       const promise = fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedCustomerTicketId)}/comments`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedCustomerTicketId)}/comments`,
         { headers: { Authorization: `Bearer ${token}` } },
       ).then(async (response) => {
         if (response.status === 401 || response.status === 403) {
@@ -2428,7 +2428,7 @@ function App() {
     setTicketMessage(null)
 
     try {
-      const response = await fetch('http://localhost:5000/api/tickets', {
+      const response = await fetch('https://supportflow-8mht.onrender.com/api/tickets', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2532,7 +2532,7 @@ function App() {
     setAssignmentMessage(null)
 
     try {
-      const response = await fetch(`http://localhost:5000/api/tickets/${ticketId}/assign`, {
+      const response = await fetch(`https://supportflow-8mht.onrender.com/api/tickets/${ticketId}/assign`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -2634,7 +2634,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/users/${encodeURIComponent(agent.id)}/status`,
+        `https://supportflow-8mht.onrender.com/api/auth/users/${encodeURIComponent(agent.id)}/status`,
         {
           method: 'PATCH',
           headers: {
@@ -2740,7 +2740,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAdminTicketId)}/assign`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAdminTicketId)}/assign`,
         {
           method: 'PATCH',
           headers: {
@@ -2848,7 +2848,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAdminTicketId)}/status`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAdminTicketId)}/status`,
         {
           method: 'PATCH',
           headers: {
@@ -2967,7 +2967,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAgentTicketId)}/status`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAgentTicketId)}/status`,
         {
           method: 'PATCH',
           headers: {
@@ -3082,7 +3082,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedAgentTicketId)}/comments`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedAgentTicketId)}/comments`,
         {
           method: 'POST',
           headers: {
@@ -3190,7 +3190,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tickets/${encodeURIComponent(selectedCustomerTicketId)}/comments`,
+        `https://supportflow-8mht.onrender.com/api/tickets/${encodeURIComponent(selectedCustomerTicketId)}/comments`,
         {
           method: 'POST',
           headers: {
@@ -3304,7 +3304,7 @@ function App() {
     setFormMessage(null)
 
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/${endpoint}`, {
+      const response = await fetch(`https://supportflow-8mht.onrender.com/api/auth/${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -5154,3 +5154,4 @@ function App() {
 }
 
 export default App
+
