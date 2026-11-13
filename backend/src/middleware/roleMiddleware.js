@@ -1,0 +1,15 @@
+function authorize(...allowedRoles) {
+  return function (req, res, next) {
+    if (!req.user) {
+      return res.status(401).json({ message: 'Authentication is required.' })
+    }
+
+    if (!allowedRoles.includes(req.user.role)) {
+      return res.status(403).json({ message: 'You are not authorized to access this resource.' })
+    }
+
+    return next()
+  }
+}
+
+module.exports = { authorize }
